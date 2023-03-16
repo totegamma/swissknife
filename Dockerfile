@@ -1,10 +1,14 @@
 FROM ubuntu
 
-RUN apt-get update \
- && apt-get install -y \
-      sudo less vim curl \
-      zip unzip \
-      postgresql-client
+RUN apt update \
+ && apt install -y \
+      sudo lsb-release less vim curl wget \
+      zip unzip
+
+RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list' \
+ && wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc > /etc/apt/trusted.gpg.d/pgdg.asc \
+ && apt update \
+ && apt install -y postgresql-client
   
 # aws cli v2 のインストール
 # https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/install-cliv2-linux.html
