@@ -3,7 +3,7 @@ FROM ubuntu
 RUN apt update \
  && apt install -y \
       sudo lsb-release less vim curl wget git \
-      zip unzip
+      zip unzip rsync
 
 RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list' \
  && wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc > /etc/apt/trusted.gpg.d/pgdg.asc \
