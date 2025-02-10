@@ -74,11 +74,17 @@ jobs:
   manifest:
     needs: build
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
     env:
       REGISTRY: ghcr.io
       IMAGE_NAME: ${{ github.repository }}
-    steps:
 
+    steps:
       - name: Download digests
         uses: actions/download-artifact@v4
         with:
